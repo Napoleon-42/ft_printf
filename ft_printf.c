@@ -40,7 +40,7 @@ int ft_string(char *pointer, buffer *buff)
 }
 
 int ft_char(char *pointer, buffer *buff)
-{
+
 	return (1);	
 }
 
@@ -55,4 +55,13 @@ int	ft_printf(const char *str, ...)
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &ft_char, &ft_integer, 0, 0, 0, 0, i, 0,
 	0, 0, 0, 0, 0, 0, p, 0, 0, &ft_string, 0, u, 0, 0, &ft_small_hex, 0, 0, 0,
 	};
+
+	va_list arguments;
+	int 	printed_nb;
+
+	va_start(arguments, str);
+	while (str)
+	{
+		if (str == '%')
+			ft_printf_brain(str, &printed_nb, arguments);
 }
