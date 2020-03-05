@@ -3,21 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:48:09 by lnelson           #+#    #+#             */
-/*   Updated: 2020/02/27 08:07:41 by lnelson          ###   ########.fr       */
+/*   Updated: 2020/03/05 15:14:25 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+
 typedef	struct	progression
 {
-	char	pers_key;
+	char	pres_key;
 	char	null_key;
 	char	index;
 	char	precision;
-	
+	int		printed_nb;
 }				buffer;
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return ;
+}
+
+void	ft_putnstr(char *str, buffer *var)
+
+{
+	int i;
+
+	i = 0;
+	if (var->pres_key)
+	while(str[i] && i < var->precision)
+	{
+		write(1, (str + i), 1);
+		i++;
+		var->printed_nb++;
+	}
+	return ;
+}
 
 int ft_big_hex(char *pointer, buffer *buff)
 {
@@ -40,28 +64,26 @@ int ft_string(char *pointer, buffer *buff)
 }
 
 int ft_char(char *pointer, buffer *buff)
-
+{
 	return (1);	
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int	(*flag) (char *pointer, buffer *buff) = {0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, %, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &ft_big_hex,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &ft_char, &ft_integer, 0, 0, 0, 0, i, 0,
-	0, 0, 0, 0, 0, 0, p, 0, 0, &ft_string, 0, u, 0, 0, &ft_small_hex, 0, 0, 0,
-	};
 
 	va_list arguments;
-	int 	printed_nb;
+	buffer	var;
 
 	va_start(arguments, str);
-	while (str)
+	while (*str)
 	{
-		if (str == '%')
-			ft_printf_brain(str, &printed_nb, arguments);
+		if (*str == '%')
+			ft_printf_brain(&str, &var, arguments);
+		else if (*str != '%')
+		{
+			ft_putchar(*(str));
+			str++;
+			var.printed_nb++;
+		}
+	}
 }
