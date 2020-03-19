@@ -6,17 +6,17 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:48:09 by lnelson           #+#    #+#             */
-/*   Updated: 2020/03/18 02:58:35 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/03/19 03:28:59 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#define ARG_TYPE arg->arg_type
-#define REVERSE	arg->reverse
-#define ZERO_KEY arg->zero
-#define ARG_SIZE arg->arg_size
-#define TOTAL_SIZE arg->total_size
-#define PRECISION arg->precision
+#define ARG_TYPE buffer->arg_type
+#define REVERSE	buffer->reverse
+#define ZERO_KEY buffer->zero
+#define ARG_SIZE buffer->arg_size
+#define WIDTH buffer->total_size
+#define PRECISION buffer->precision
 
 typedef	struct	progression
 {
@@ -48,35 +48,36 @@ void	ft_putchar(char c)
 	return ;
 }
 
-void	ft_putnstr(char *str, buffer *var)
-
-{
-	int i;
-
-	i = 0;
-	if (var->pres_key)
-	while(str[i] && i < var->pres_val)
-	{
-		write(1, (str + i), 1);
-		i++;
-		var->printed_nb++;
-	}
-	return ;
-}
-
 int		ft_print_arg(char *str, t_arg *buffer, va_list *args)
 {
 	ft_get_argparam(str, buffer, args);
 	while (ft_strchr("cspdiuxX", *str) == 0)
 	{
-		if (str == ' ')
-		
-		*******
-
+		if (str == '.')
+		{
+			str++;
+			if (*(str) == '*')
+				PRECISION = va_copy(args, int);
+			else
+			{
+				PRECISION = atoi(str);
+				while(ft_isdigit((int)*str) == 0)
+					str++;
+			}
+		}                                      /// TA PLU DE LIGNE, +4 SUR ATOI >> TABLEAU :| 
 		if (str == '*')
-		//size = param ****
-
-		*******
+			WIDTH = va_copy(args, int);
+		if (str == '-')
+			REVERSE++;
+		if (str == '0' && ZERO_KEY == 0)
+			ZERO_KEY++;
+		if (ft_isdigit((int)*str) == 0)
+		{
+			WIDTH = atoi(str);
+			while(ft_isdigit((int)*str) == 0)
+				str++;
+		}
+		
 	}
 	
 
