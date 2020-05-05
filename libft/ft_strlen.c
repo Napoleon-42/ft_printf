@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:34 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/05 01:04:27 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/08 17:22:52 by napoleon          #+#    #+#             */
+/*   Updated: 2019/12/09 11:12:38 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft.h"
 
-typedef	struct	progression
+int	ft_strlen(const char *s)
 {
-	char	arg_type;
-	char	reverse;
-	char	zero;
-	int		arg_size;
-	int		minimal_size;
-	int		precision;
-}				t_arg;
+	int		res;
 
-#define ARG_TYPE buffer->arg_type
-#define REVERSE	buffer->reverse
-#define ZERO_KEY buffer->zero
-#define ARG_SIZE buffer->arg_size
-#define WIDTH buffer->minimal_size
-#define PRECISION buffer->precision
-
-
-#endif
+	res = 0;
+	while (s[res] != 0)
+	{
+		res++;
+	}
+	return (res);
+}

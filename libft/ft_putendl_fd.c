@@ -1,12 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_outils.c                                 :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/04 03:42:59 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/21 17:07:16 by napoleon          #+#    #+#             */
+/*   Updated: 2019/11/28 18:40:44 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include <unistd.h>
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	int i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != 0)
+	{
+		write(fd, s + i, 1);
+		i++;
+	}
+	write(fd, "\n", 1);
+}

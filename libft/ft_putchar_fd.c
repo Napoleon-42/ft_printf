@@ -1,12 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_outils.c                                 :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/04 03:42:59 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/21 17:05:14 by napoleon          #+#    #+#             */
+/*   Updated: 2019/11/26 13:38:06 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include <unistd.h>
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

@@ -1,12 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_outils.c                                 :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/04 03:42:59 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/07 20:40:58 by napoleon          #+#    #+#             */
+/*   Updated: 2019/11/28 18:42:02 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+	char	*res;
+
+	res = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			res = (char *)s + i;
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char*)&(s[i]));
+	return (res);
+}

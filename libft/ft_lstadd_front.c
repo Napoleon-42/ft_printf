@@ -1,12 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_outils.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/04 03:42:59 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/26 14:36:38 by lnelson           #+#    #+#             */
+/*   Updated: 2019/11/28 15:25:53 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void			ft_lstadd_front(t_list **begin_list, t_list *new)
+{
+	if (*begin_list == 0)
+		*begin_list = new;
+	else
+	{
+		new->next = *begin_list;
+		*begin_list = new;
+	}
+}

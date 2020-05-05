@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:34 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/05 01:04:27 by napoleon         ###   ########.fr       */
+/*   Created: 2020/05/04 03:42:38 by napoleon          #+#    #+#             */
+/*   Updated: 2020/05/05 01:12:12 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft/libft.h"
+#include "ft_printf.h"
 
-typedef	struct	progression
+int	ft_printf_char(char c, t_arg buffer)
 {
-	char	arg_type;
-	char	reverse;
-	char	zero;
-	int		arg_size;
-	int		minimal_size;
-	int		precision;
-}				t_arg;
-
-#define ARG_TYPE buffer->arg_type
-#define REVERSE	buffer->reverse
-#define ZERO_KEY buffer->zero
-#define ARG_SIZE buffer->arg_size
-#define WIDTH buffer->minimal_size
-#define PRECISION buffer->precision
-
-
-#endif
+	write(1, &c, 1);
+	return (1);
+}

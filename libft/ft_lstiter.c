@@ -1,12 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_outils.c                                 :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/04 03:42:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/04 03:42:59 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/28 15:02:06 by lnelson           #+#    #+#             */
+/*   Updated: 2019/11/28 18:39:30 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_lstiter(t_list *lst, void (*f)(void*))
+{
+	t_list	*ptr;
+
+	if (!lst || !f)
+		return ;
+	ptr = lst;
+	while (ptr->next != 0)
+	{
+		f(ptr->content);
+		ptr = ptr->next;
+	}
+	f(ptr->content);
+}
