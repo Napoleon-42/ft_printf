@@ -6,12 +6,13 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:48:09 by lnelson           #+#    #+#             */
-/*   Updated: 2020/05/05 03:06:13 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/05/06 04:18:19 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "libft/libft.h"
+#include "ft_printf.h"
 #define ARG_TYPE buffer->arg_type
 #define REVERSE	buffer->reverse
 #define ZERO_KEY buffer->zero
@@ -70,7 +71,7 @@ void	ft_get_argparam(char *str, t_arg *buffer, va_list *args)
 	ARG_TYPE = *str;
 }
 
-int ft_print_arg(char *str, t_arg *buffer, va_arg *args)
+int ft_print_arg(char *str, t_arg *buffer, va_list *args)
 {
 	int printed;
 
