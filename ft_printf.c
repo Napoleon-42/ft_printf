@@ -6,7 +6,7 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:48:09 by lnelson           #+#    #+#             */
-/*   Updated: 2020/05/06 04:18:19 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/05/07 04:33:57 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ int ft_print_arg(char *str, t_arg *buffer, va_list *args)
 	
 	if (buffer->arg_type == 'p')
 	
-	if (buffer->arg_type == 'd')
-	
-	if (buffer->arg_type == 'i')
+	if (buffer->arg_type == 'd' && buffer->arg_type == 'i')
 	
 	if (buffer->arg_type == 'u')
 	
