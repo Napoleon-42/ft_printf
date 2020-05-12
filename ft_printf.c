@@ -6,26 +6,21 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:48:09 by lnelson           #+#    #+#             */
-/*   Updated: 2020/05/07 04:33:57 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/05/12 05:03:10 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h> // NOUBLIE PAS PUTAIN TA MERE
 #include <stdarg.h>
 #include "libft/libft.h"
 #include "ft_printf.h"
-#define ARG_TYPE buffer->arg_type
-#define REVERSE	buffer->reverse
-#define ZERO_KEY buffer->zero
-#define ARG_SIZE buffer->arg_size
-#define WIDTH buffer->minimal_size
-#define PRECISION buffer->precision
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-test_print_arg(t_arg test)
+void	test_print_arg(t_arg test)
 {
-	printf("ARG_TYPE = %c\n", test.arg_type);
+	printf("\nARG_TYPE = %c\n", test.arg_type);
 	printf("REVERSE = %c\n", test.reverse);
 	printf("ZERO_KEY = %c\n", test.zero);
 	printf("ARG_SIZE = %d\n", test.arg_size);
@@ -35,62 +30,57 @@ test_print_arg(t_arg test)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void	ft_putchar(char c)
+void	ft_get_argparam(char **str, t_arg *buffer, va_list *args)
 {
-	write(1, &c, 1);
-	return ;
-}
-
-void	ft_get_argparam(char *str, t_arg *buffer, va_list *args)
-{
-	while (ft_strchr("cspdiuxX", *str) == 0)
+	while (ft_strrchr("cspdiuxX", (int)**str) == 0)
 	{
-		if (str == '.')
+		if (**str == '.')
 		{
-			str++;
-			if (*(str) == '*')
+			*str++;
+			if (**(str) == '*')
 				PRECISION = va_arg(*args, int);
 			else
 			{
-				PRECISION = atoi(str);
-				while(ft_isdigit((int)(*(str++)) == 0));
+				PRECISION = atoi(*str);
+				while(ft_isdigit((int)(**(str++)) == 0));
 			}
 		}
-		if (str == '*')
+		if (**str == '*')
 			WIDTH = va_arg(*args, int);
-		if (str == '-')
+		if (**str == '-')
 			REVERSE++;
-		if (str == '0' && ZERO_KEY == 0)
+		if (**str == '0' && ZERO_KEY == 0)
 			ZERO_KEY++;
-		if (ft_isdigit((int)*str) == 0 && *str != 0)
+		if (ft_isdigit((int)**str) == 0 && *str != 0)
 		{
-			WIDTH = atoi(str);
-			while(ft_isdigit((int)(*(str++)) == 0));
+			WIDTH = ft_atoi(*str);
+			while(ft_isdigit((int)(**(str++)) == 0));
 		}
+		*str++;
 	}
-	ARG_TYPE = *str;
+	ARG_TYPE = **str;
 }
 
-int ft_print_arg(char *str, t_arg *buffer, va_list *args)
+int ft_print_arg(char **str, t_arg *buffer, va_list *args)
 {
 	int printed;
 
 	printed = 0;
 	ft_get_argparam(str, buffer, args);
 	if (buffer->arg_type == 'c')
-	
+		printed = ft_printf_char((char)va_arg(*args, char), *buffer);
 	if (buffer->arg_type == 's')
-	
-	if (buffer->arg_type == 'p')
-	
+		printed = ft_printf_string((char *)va_arg(*args, char*), *buffer);
+//	if (buffer->arg_type == 'p')
+//		
 	if (buffer->arg_type == 'd' && buffer->arg_type == 'i')
+		printed = ft_printf_integer((int)va_arg(*args, int), *buffer);
+//	if (buffer->arg_type == 'u')
 	
-	if (buffer->arg_type == 'u')
+//	if (buffer->arg_type == 'x')
 	
-	if (buffer->arg_type == 'x')
-	
-	if (buffer->arg_type == 'X')
-	
+//	if (buffer->arg_type == 'X')
+	printf("printed = %d", printed);
 
 	return (printed);
 }
@@ -107,10 +97,13 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str == '%')
-			printed_value = printed_value + ft_print_arg(str, &buffer, &args);
+		{
+			write(1, "_FIRST CHECKPOINT_", 19);
+			printed_value = printed_value + ft_print_arg((char **)&str, &buffer, &args);
+		}
 		else if (*str != '%')
 		{
-			ft_putchar(*(str));
+			ft_putchar_fd(*(str), 1);
 			str++;
 			printed_value++;
 		}
@@ -120,5 +113,11 @@ int	ft_printf(const char *str, ...)
 
 int main (int ac, char **av)
 {
-	 
+	
+	ft_printf("TEST 1 DONE\n");
+	ft_printf("TEST 2 INTEGER %d", -21474836);
+	
+	
+	return 0;
+		 
 }

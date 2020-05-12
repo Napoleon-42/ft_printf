@@ -6,14 +6,14 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 03:42:43 by napoleon          #+#    #+#             */
-/*   Updated: 2020/05/07 04:30:10 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/05/12 04:01:31 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static void	ft_putcharn(char c, int n)
+void	ft_putcharn(char c, int n)
 {
 	int i;
 
@@ -99,6 +99,7 @@ int			ft_printf_integer(int num, t_arg buffer)
 	return ((buffer.precision > i) ? buffer.precision : i);
 }
 
+/*
 int main(void)
 {
 	int i;
@@ -110,4 +111,4 @@ int main(void)
 	i = ft_printf_integer(0, test);
 	printf("|\n\033[0;31m%d", i);
 	return(0);
-}
+}*/
