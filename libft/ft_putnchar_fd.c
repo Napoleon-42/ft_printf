@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnchar_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 20:40:58 by napoleon          #+#    #+#             */
-/*   Updated: 2020/06/04 02:01:18 by napoleon         ###   ########.fr       */
+/*   Created: 2019/11/21 17:05:14 by napoleon          #+#    #+#             */
+/*   Updated: 2020/07/16 16:53:39 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putnchar_fd(char c, int n, int fd)
 {
-	int		i;
-	char	*res;
+	int i;
 
-	res = 0;
 	i = 0;
-	while (s[i])
+	while (i < n)
 	{
-		if (s[i] == c)
-			res = (char *)s + i;
+		write(fd, &c, 1);
 		i++;
 	}
-	if ((char)c == '\0')
-		return ((char*)&(s[i]));
-	return (res);
 }

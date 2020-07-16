@@ -6,13 +6,12 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:32:19 by lnelson           #+#    #+#             */
-/*   Updated: 2020/05/05 03:30:13 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:53:56 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -22,8 +21,7 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-void			ft_putstr(char *str);
-void			ft_putchar(char c);
+void			ft_putnchar_fd(char c, int n, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
