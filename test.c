@@ -3,11 +3,12 @@
 int main()
 {
 	int a;
-
-	printf("\n p = |%p|", &a);
-    printf("\n p = |%20p|", &a);
-    printf("\n p = |%020p|", &a);
-    printf("\n p = |%-20p|", &a);
+	
+	printf("\n%% = %%");
+	printf("\n%% = % %");
+	printf("\n%% = %3%");
+	printf("\n%% = %-03%");
+	printf("\n%% = %03%");
 
 	return 0;
 }

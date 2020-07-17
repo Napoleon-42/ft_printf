@@ -13,7 +13,7 @@ FLAGS	= -Wall -Wextra -Werror
 
 
 SRCS	= ${LIBFT_PATH}/ft_putchar_fd.c ${LIBFT_PATH}/ft_putstr_fd.c ${LIBFT_PATH}/ft_putendl_fd.c ${LIBFT_PATH}/ft_putnbr_fd.c\
-		${LIBFT_PATH}/ft_putnchar_fd.c\
+		${LIBFT_PATH}/ft_putnchar_fd.c ${LIBFT_PATH}/ft_putnstr_fd.c\
 		\
 		${LIBFT_PATH}/ft_split.c ${LIBFT_PATH}/ft_strjoin.c ${LIBFT_PATH}/ft_strmapi.c ${LIBFT_PATH}/ft_substr.c ${LIBFT_PATH}/ft_strtrim.c \
 		${LIBFT_PATH}/ft_isalpha.c ${LIBFT_PATH}/ft_isascii.c ${LIBFT_PATH}/ft_isalnum.c ${LIBFT_PATH}/ft_isdigit.c ${LIBFT_PATH}/ft_strlen.c\

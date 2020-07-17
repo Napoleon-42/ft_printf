@@ -24,21 +24,21 @@ int		print_s(char *str, t_print *args)
 {
 	int lenght;
 
-	lenght = ft_strlen(str);
+	lenght = (PRECIS >= 0 ? PRECIS : ft_strlen(str));
 	if (WIDE > lenght)
 	{
 		if (MIN_KEY == 1)
 		{
 			ft_putnchar_fd(' ', WIDE - lenght, 1);
-			ft_putstr_fd(str, 1);
+			ft_putnstr_fd(str, PRECIS, 1);
 		}
 		else
 		{
-			ft_putstr_fd(str, 1);
+			ft_putnstr_fd(str, PRECIS,1);
 			ft_putnchar_fd(' ', WIDE - lenght, 1);
 		}
 	}
 	else
-		ft_putstr_fd(str, 1);
+		ft_putnstr_fd(str, PRECIS, 1);
 	return ((WIDE > lenght) ? WIDE : lenght);
 }

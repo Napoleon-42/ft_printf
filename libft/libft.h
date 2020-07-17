@@ -6,7 +6,7 @@
 /*   By: napoleon <napoleon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:32:19 by lnelson           #+#    #+#             */
-/*   Updated: 2020/07/16 16:53:56 by napoleon         ###   ########.fr       */
+/*   Updated: 2020/07/18 01:07:34 by napoleon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef	struct	s_list
 void			ft_putnchar_fd(char c, int n, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
+void			ft_putnstr_fd(char *str, int n, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			*ft_memccpy(void *dest, const void *src, int c, size_t n);

@@ -10,25 +10,26 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 {
 	init_print(args);
 	get_param(str, ap, args);
+	//test_print_arg(args);
 	if (ARG_TYPE == 'c')
-		*res = print_c((char)(va_arg(*ap, int)), args);
+		*res += print_c((char)(va_arg(*ap, int)), args);
 	if (ARG_TYPE == 's')
-		*res = print_s((char *)(va_arg(*ap, int*)), args);
+		*res += print_s((char *)(va_arg(*ap, int*)), args);
 	if (ARG_TYPE == 'p')
-		*res = print_p((__uintmax_t)(va_arg(*ap, __uintmax_t)), args);
+		*res += print_p((__uintmax_t)(va_arg(*ap, __uintmax_t)), args);
 	/*if (ARG_TYPE == 'd')
 
 	if (ARG_TYPE == 'i')
 
 	if (ARG_TYPE == 'u')
-	
+	*/
 	if (ARG_TYPE == '%')
-
-	if (ARG_TYPE == 'x' || ARG_TYPE == 'X')
-
+		*res += write(1, "%", 1);
+	/*if (ARG_TYPE == 'x' || ARG_TYPE == 'X')
+*/
 	if (ARG_TYPE == 'n')
-
-	if (ARG_TYPE == 'f')
+		*((int *)va_arg(*ap, int*)) = *res;
+/*	if (ARG_TYPE == 'f')
 
 	if (ARG_TYPE == 'g')
 
@@ -61,18 +62,19 @@ int		ft_printf(const char *str, ...)
 
 int main()
 {
-	/* Char and String test 
+	/* ------------CHAR AND STRING TEST----------------
     ft_printf("\nc = |%c|", 'A');
     ft_printf("\nc = |%3c|", 'A');
     ft_printf("\nc = |%-3c|", 'A');
     ft_printf("\nc = |%-*c|", 3,'A');
 
-*/
-	ft_printf("\ns = |%s|", "\nsalut\nlol");
-	ft_printf("\ns = |%8s|", "salut");
-	ft_printf("\ns = |%-8s|", "salut");
-	ft_printf("\ns = |%-*s|", 8,"salut");
 
+	ft_printf("\ns = |%s|", "salut");
+	ft_printf("\ns = |%8.4s|", "salut");
+	ft_printf("\ns = |%-8s|", "salut");
+	ft_printf("\ns = |%-*.4s|", 8,"salut");*/
+
+	/* ------------POINTER TESTS----------------
 	int a;
 
 	printf("\n\n p = -|%p|\n", &a);
@@ -85,7 +87,18 @@ int main()
     ft_printf(" p = +|%020p|", &a);
 
     printf("\n\n p = +|%-20p|\n", &a);
-    ft_printf(" p = -|%-20p|", &a);
+    ft_printf(" p = -|%-20p|", &a); */
+
+	/* ------------ % TEST ----------------
+	ft_printf("%% = |% 0-33.*%|", 34);*/
+
+	/* ------------THE NNN	 TESTS----------------
+	int b;
+
+	b = -35;
+	printf("before = %i\n", b);
+	ft_printf("0123456789%n\n", &b);
+	printf(" after = %i", b);*/
 
 	return 0;
 }
