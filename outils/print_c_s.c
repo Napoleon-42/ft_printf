@@ -4,7 +4,7 @@ int		print_c(char c, t_print *args)
 {
 	if (WIDE)
 	{
-		if (!MIN_KEY)
+		if (MIN_KEY == 1)
 		{
 			ft_putnchar_fd(' ', WIDE-1, 1);
 			ft_putchar_fd(c, 1);
@@ -27,7 +27,7 @@ int		print_s(char *str, t_print *args)
 	lenght = ft_strlen(str);
 	if (WIDE > lenght)
 	{
-		if (!MIN_KEY)
+		if (MIN_KEY == 1)
 		{
 			ft_putnchar_fd(' ', WIDE - lenght, 1);
 			ft_putstr_fd(str, 1);

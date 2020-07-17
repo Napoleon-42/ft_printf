@@ -6,7 +6,7 @@ void	init_print(t_print *args)
 	WIDE = -1;
 	ZERO_KEY = -1;
 	MIN_KEY = -1;
-	SIZE = -1;
+	SIZE = 0;
 	ARG_TYPE = 0;
 	HASH = -1;
 	PLUS = -1;
@@ -39,6 +39,7 @@ void	get_param_utils(const char **str, va_list *ap, t_print *args)
 
 void	get_param(const char **str, va_list *ap, t_print *args)
 {
+	(*str)++;
 	while(ft_strchr("cspdiux%", **str) == NULL)
 	{
 		if (**str == ' ')

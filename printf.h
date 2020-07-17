@@ -5,6 +5,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 # define ZERO_KEY args->zero_key
 # define MIN_KEY args->minus_key
@@ -36,5 +37,6 @@ void	get_param(const char **str, va_list *ap, t_print *args);
 
 int		print_c(char c, t_print *args);
 int		print_s(char *str, t_print *args);
+int		print_p(__uintmax_t nbr, t_print *args);
 
 #endif

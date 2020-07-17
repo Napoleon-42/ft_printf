@@ -1,8 +1,12 @@
 #include "printf.h"
+#include <stdio.h>
 
+void	test_print_arg(t_print *args)
+{
+	printf("\n Arg is: \n PRECIS = %d\t WIDE = %d\n ZERO_KEY = %d\t MIN_KEY = %d \n ARG_TYPE = %c\n", PRECIS, WIDE, (int)ZERO_KEY, (int)MIN_KEY, ARG_TYPE);
+}
 
-
-void	printf_param(va_list *ap, int *res, t_print *args)
+void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 {
 	init_print(args);
 	get_param(str, ap, args);
@@ -10,9 +14,9 @@ void	printf_param(va_list *ap, int *res, t_print *args)
 		*res = print_c((char)(va_arg(*ap, int)), args);
 	if (ARG_TYPE == 's')
 		*res = print_s((char *)(va_arg(*ap, int*)), args);
-	/*if (ARG_TYPE == 'p')
-
-	if (ARG_TYPE == 'd')
+	if (ARG_TYPE == 'p')
+		*res = print_p((__uintmax_t)(va_arg(*ap, __uintmax_t)), args);
+	/*if (ARG_TYPE == 'd')
 
 	if (ARG_TYPE == 'i')
 
@@ -57,16 +61,31 @@ int		ft_printf(const char *str, ...)
 
 int main()
 {
+	/* Char and String test 
     ft_printf("\nc = |%c|", 'A');
     ft_printf("\nc = |%3c|", 'A');
     ft_printf("\nc = |%-3c|", 'A');
     ft_printf("\nc = |%-*c|", 3,'A');
 
-
-/*	ft_printf("\ns = |%s|", "salut");
+*/
+	ft_printf("\ns = |%s|", "\nsalut\nlol");
 	ft_printf("\ns = |%8s|", "salut");
 	ft_printf("\ns = |%-8s|", "salut");
-	ft_printf("\ns = |%-*s|", 8,"salut");*/
+	ft_printf("\ns = |%-*s|", 8,"salut");
+
+	int a;
+
+	printf("\n\n p = -|%p|\n", &a);
+	ft_printf("\n p = +|%p|", &a);
+
+    printf("\n\n p = -|%20p|\n", &a);
+    ft_printf(" p = +|%20p|", &a);
+
+    printf("\n\n p = -|%20p|\n", &a);
+    ft_printf(" p = +|%020p|", &a);
+
+    printf("\n\n p = +|%-20p|\n", &a);
+    ft_printf(" p = -|%-20p|", &a);
 
 	return 0;
 }

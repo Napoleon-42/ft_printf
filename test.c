@@ -2,9 +2,12 @@
 
 int main()
 {
-	printf("\nc = |%c|", 'c');
-	printf("\nc = |%3c|", 'c');
-	printf("\nc = |%-3c|", 'c');
-	printf("\nc = |%-*c|", 3,'c');
+	int a;
+
+	printf("\n p = |%p|", &a);
+    printf("\n p = |%20p|", &a);
+    printf("\n p = |%020p|", &a);
+    printf("\n p = |%-20p|", &a);
+
 	return 0;
 }
