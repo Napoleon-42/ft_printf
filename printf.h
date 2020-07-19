@@ -38,5 +38,5 @@ void	get_param(const char **str, va_list *ap, t_print *args);
 int		print_c(char c, t_print *args);
 int		print_s(char *str, t_print *args);
 int		print_p(__uintmax_t nbr, t_print *args);
-
+int		print_i_d(int nbr, t_print *args);
 #endif

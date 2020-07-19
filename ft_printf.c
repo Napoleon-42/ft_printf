@@ -17,11 +17,9 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 		*res += print_s((char *)(va_arg(*ap, int*)), args);
 	if (ARG_TYPE == 'p')
 		*res += print_p((__uintmax_t)(va_arg(*ap, __uintmax_t)), args);
-	/*if (ARG_TYPE == 'd')
-
-	if (ARG_TYPE == 'i')
-
-	if (ARG_TYPE == 'u')
+	if (ARG_TYPE == 'd' || ARG_TYPE == 'i')
+		*res += print_i_d((int)va_arg(*ap, int), args);
+	/*if (ARG_TYPE == 'u')
 	*/
 	if (ARG_TYPE == '%')
 		*res += write(1, "%", 1);
@@ -62,7 +60,7 @@ int		ft_printf(const char *str, ...)
 
 int main()
 {
-	/* ------------CHAR AND STRING TEST----------------
+	/* ------------CHAR AND STRING TESTS----------------
     ft_printf("\nc = |%c|", 'A');
     ft_printf("\nc = |%3c|", 'A');
     ft_printf("\nc = |%-3c|", 'A');
@@ -92,13 +90,22 @@ int main()
 	/* ------------ % TEST ----------------
 	ft_printf("%% = |% 0-33.*%|", 34);*/
 
-	/* ------------THE NNN	 TESTS----------------
+	/* ------------ N TEST----------------
 	int b;
 
 	b = -35;
 	printf("before = %i\n", b);
 	ft_printf("0123456789%n\n", &b);
 	printf(" after = %i", b);*/
+
+	ft_printf("\ni = |%i|", -2147483648);
+    ft_printf("\ni = |%0 15i|",  -2147483648);
+    ft_printf("\ni = |%0 -12i|", -2147483648);
+    ft_printf("\ni = |%0 -15.13i|", -2147483648);
+    ft_printf("\ni = |% -15.13i|", -2147483648);
+    ft_printf("\ni = |% 15.13i|", -2147483648);
+    ft_printf("\ni = |%015.13i|", -2147483648);
+    ft_printf("\ni = |%0*.9i|\n", 15, -2147483648);
 
 	return 0;
 }
