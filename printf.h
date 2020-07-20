@@ -7,6 +7,8 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define LOW_HEXA "0123465789abcdef"
+# define UPP_HEXA "0123465789ABCDEF"
 # define ZERO_KEY args->zero_key
 # define MIN_KEY args->minus_key
 # define SIZE args->size

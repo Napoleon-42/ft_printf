@@ -45,7 +45,7 @@ int			print_u(unsigned int nbr, t_print *args)
 	}	
 	else
 	{
-		if (ZERO_KEY == 0 || PRECIS < 0)
+		if (ZERO_KEY == 1 && PRECIS < 0)
 		{
 			if (PLUS == 1 || SPACE == 1)
 				write(1, (PLUS == 1 ? "+" : " "), 1);

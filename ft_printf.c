@@ -23,8 +23,8 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 		*res += print_u((unsigned int)va_arg(*ap, unsigned int), args);
 	if (ARG_TYPE == '%')
 		*res += write(1, "%", 1);
-	/*if (ARG_TYPE == 'x' || ARG_TYPE == 'X')
-*/
+	if (ARG_TYPE == 'x' || ARG_TYPE == 'X')
+		*res += print_u((unsigned int)va_arg(*ap, unsigned int), args);
 	if (ARG_TYPE == 'n')
 		*((int *)va_arg(*ap, int*)) = *res;
 /*	if (ARG_TYPE == 'f')
@@ -35,24 +35,24 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 	*/	
 }
 
-int		ft_printf(const char *str, ...)
+int		ft_printf(const char *format, ...)
 {
 	int		res;
 	va_list	ap;
 	t_print args;
 
-	va_start(ap, str);
+	va_start(ap, format);
 	res = 0;
-	while (*str != 0)
+	while (*format != 0)
 	{
-		if (*str == '%')
-			printf_param(&str, &ap, &res, &args);
+		if (*format == '%')
+			printf_param(&format, &ap, &res, &args);
 		else
 		{
-			ft_putchar_fd(*str, 1);
+			ft_putchar_fd(*format, 1);
 			res++;
 		}
-		str++;
+		format++;
 	}
 	va_end(ap);
 	return (res);
@@ -108,13 +108,26 @@ int main()
     ft_printf("\ni = |%015.13i|", -2147483648);
     ft_printf("\ni = |%0*.9i|\n", 15, -2147483648);*/
 
-    ft_printf("\nu = |%015u|",  4294967295);
+//		------------ INT TESTS----------------
+    /*ft_printf("\nu = |%015u|",  4294967295);
     ft_printf("\nu = |%0-12u|", 4294967295);
     ft_printf("\nu = |%0-15.13u|", 4294967295);
     ft_printf("\nu = |%-15.13u|", 4294967295);
     ft_printf("\nu = |%15.13u|", 4294967295);
     ft_printf("\nu = |%015.13u|", 4294967295);
-    ft_printf("\nu = |%0 *.9u|\n", 15, 4294967295);
+    ft_printf("\nu = |%0 *.9u|\n", 15, 4294967295);*/
+
+
+//		------------ XEXA TESTS----------------
+	ft_printf("\ni = |%x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%0#15x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%-#12x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%-#15.13x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%#-15.13x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%#15.13x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%#15.13x|", (unsigned int)4294967295);
+    ft_printf("\ni = |%#*.9x|\n", 15, (unsigned int)4294967295);
+
 
 	return 0;
 }

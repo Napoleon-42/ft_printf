@@ -56,7 +56,7 @@ int		print_i_d(int nbr, t_print *args)
 	}
 	else
 	{
-		if (ZERO_KEY == 0 || PRECIS < 0)
+		if (ZERO_KEY == 1 && PRECIS < 0)
 		{
 			if (PLUS == 1 || SPACE == 1 || nbr < 0)
 				write(1, (nbr < 0 ? "-" : (PLUS == 1 ? "+" : " ")), 1);
