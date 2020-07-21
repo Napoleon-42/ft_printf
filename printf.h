@@ -7,8 +7,8 @@
 # include <unistd.h>
 # include <limits.h>
 
-# define LOW_HEXA "0123465789abcdef"
-# define UPP_HEXA "0123465789ABCDEF"
+# define LOW_HEXA "0123456789abcdef"
+# define UPP_HEXA "0123456789ABCDEF"
 # define ZERO_KEY args->zero_key
 # define MIN_KEY args->minus_key
 # define SIZE args->size
@@ -42,4 +42,6 @@ int		print_s(char *str, t_print *args);
 int		print_p(__uintmax_t nbr, t_print *args);
 int		print_i_d(int nbr, t_print *args);
 int		print_u(unsigned int nbr, t_print *args);
+int		print_x(unsigned int nbr, t_print *args);
+
 #endif

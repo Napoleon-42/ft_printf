@@ -12,6 +12,8 @@ static int	nbrlen(unsigned int nb)
 	int				i;
 
 	i = 0;
+	if (nb == 0)
+		return (1);
 	while (nb > 0)
 	{
 		i++;
@@ -29,10 +31,16 @@ void		print_x_norme(unsigned int nbr, t_print *args)
 	pf_putnbr(nbr, args);
 }
 
+static int	null_precision_nbr(int with)
+{
+	ft_putnchar_fd(' ', with, 1);
+	return 0;
+}
+
 int			print_x(unsigned int nbr, t_print *args)
 {
 	if (PRECIS == 0 && nbr == 0)
-		return (0);
+		return (null_precision_nbr(WIDE));
 	SIZE = nbrlen(nbr) < PRECIS ? PRECIS : nbrlen(nbr);
 	SIZE += (HASH == 1) ? 2 : 0;
 	if (MIN_KEY == 1)

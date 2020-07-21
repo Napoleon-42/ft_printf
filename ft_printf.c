@@ -24,7 +24,7 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 	if (ARG_TYPE == '%')
 		*res += write(1, "%", 1);
 	if (ARG_TYPE == 'x' || ARG_TYPE == 'X')
-		*res += print_u((unsigned int)va_arg(*ap, unsigned int), args);
+		*res += print_x((unsigned int)va_arg(*ap, unsigned int), args);
 	if (ARG_TYPE == 'n')
 		*((int *)va_arg(*ap, int*)) = *res;
 /*	if (ARG_TYPE == 'f')
@@ -58,19 +58,25 @@ int		ft_printf(const char *format, ...)
 	return (res);
 }
 
-int main()
-{
-	/* ------------CHAR AND STRING TESTS----------------
-    ft_printf("\nc = |%c|", 'A');
-    ft_printf("\nc = |%3c|", 'A');
-    ft_printf("\nc = |%-3c|", 'A');
-    ft_printf("\nc = |%-*c|", 3,'A');
+//int main()
+//{
+//	 ------------CHAR AND STRING TESTS----------------
+  //  ft_printf("\nc = |%1c%2c%3c|", '"', '!', '"');
+    //ft_printf("\nc = |%3c|", 'A');
+    //ft_printf("\nc = |%-3c|", 'A');
+    //ft_printf("\nc = |%-*c|", 3,'A');
 
 
-	ft_printf("\ns = |%s|", "salut");
-	ft_printf("\ns = |%8.4s|", "salut");
-	ft_printf("\ns = |%-8s|", "salut");
-	ft_printf("\ns = |%-*.4s|", 8,"salut");*/
+//	ft_printf("\ns = |%.7s|", "hello");
+//	ft_printf("\ns = |%.2s%.7s|", "hello", "world");
+//	ft_printf("\ns = |%.7s%.2s|", "hello", "world");
+//	ft_printf("\ns = |%.5s%7s|", "yo", "boi");
+
+
+	//printf("\n\nTrue printf:\ns = |%.7s|", "hello");
+	//printf("\ns = |%.2s%.7s|", "hello", "world");
+	//printf("\ns = |%.7s%.2s|", "hello", "world");
+	//printf("\ns = |%.5s%7s|", "yo", "boi");
 
 	/* ------------POINTER TESTS----------------
 	int a;
@@ -119,15 +125,15 @@ int main()
 
 
 //		------------ XEXA TESTS----------------
-	ft_printf("\ni = |%x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%0#15x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%-#12x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%-#15.13x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%#-15.13x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%#15.13x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%#15.13x|", (unsigned int)4294967295);
-    ft_printf("\ni = |%#*.9x|\n", 15, (unsigned int)4294967295);
+/*	ft_printf("\nx = |%x|", (unsigned int)17);
+    ft_printf("\nx = |%x|", (unsigned int)4294967295);
+    ft_printf("\nx = |%7x|", (unsigned int)33);
+    ft_printf("\nx = |%5x|", (unsigned int)52625);
+    ft_printf("\nx = |%2x|", (unsigned int)94827);
+    ft_printf("\nx = |%-7x|", (unsigned int)33);
+    ft_printf("\nx = |%-5x|", (unsigned int)52625);
+    ft_printf("\nx = |%.5x|\n", (unsigned int)21);
 
-
-	return 0;
-}
+*/
+//	return 0;
+//}

@@ -19,6 +19,8 @@ static int	nbrlen(int nbr)
 	unsigned int	nb;
 
 	i = 0;
+	if (nbr == 0)
+		return (1);
 	if (nbr < 0)
 		nb = -nbr;
 	else
@@ -40,10 +42,16 @@ void		print_i_d_norme(int nbr, t_print *args)
 	pf_putnbr(nbr, args);
 }
 
+static int	null_precision_nbr(int with)
+{
+	ft_putnchar_fd(' ', with, 1);
+	return 0;
+}
+
 int		print_i_d(int nbr, t_print *args)
 {
 	if (PRECIS == 0 && nbr == 0)
-		return (0);	
+		return (null_precision_nbr(WIDE));	
 	SIZE = nbrlen(nbr) < PRECIS ? PRECIS : nbrlen(nbr);
 	SIZE += (PLUS == 1 || SPACE == 1 || nbr < 0) ? 1 : 0;
 	if (MIN_KEY == 1)

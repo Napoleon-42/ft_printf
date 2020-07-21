@@ -10,7 +10,7 @@ void	ft_putnstr_fd(char *str, int n, int fd)
 		return ;
 	}
 	i = 0;
-	while (i < n)
+	while (i < n && str[i] != 0)
 	{
 		ft_putchar_fd(str[i], fd);
 		i++;
