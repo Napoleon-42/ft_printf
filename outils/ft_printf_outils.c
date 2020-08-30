@@ -13,11 +13,22 @@ void	init_print(t_print *args)
 	SPACE = -1;
 }
 
-void	get_param_utils(const char **str, va_list *ap, t_print *args)
+void	get_param_uts(int num, t_print *args)
+{
+	if (num < 0)
+	{
+		WIDE = -num;
+		MIN_KEY = 1;
+	}
+	else
+		WIDE = num;
+	return;
+}
+
+void	get_param_ut(const char **str, va_list *ap, t_print *args)
 {
 	if (**str == '.')
 	{
-		//write(1, "|prec change|", 13);
 		(*str)++;
 		if (**str == '*')
 			PRECIS = va_arg(*ap, int);
@@ -31,7 +42,6 @@ void	get_param_utils(const char **str, va_list *ap, t_print *args)
 	}
 	else if (ft_isdigit(**str) == 42)
 	{
-		//write(1, "|wide change utils|", 19);
 		WIDE = ft_atoi(*str);
 		while (ft_isdigit(**str) == 42)
 			(*str)++;
@@ -42,7 +52,7 @@ void	get_param_utils(const char **str, va_list *ap, t_print *args)
 void	get_param(const char **str, va_list *ap, t_print *args)
 {
 	(*str)++;
-	while(ft_strchr("cspdiuxnefg%", **str) == NULL)
+	while(ft_strchr("cspdiuxXnefg%\0", **str) == NULL)
 	{
 		if (**str == ' ')
 			SPACE = 1;
@@ -55,12 +65,9 @@ void	get_param(const char **str, va_list *ap, t_print *args)
 		if (**str == '0')
 			ZERO_KEY = 1;
 		if (**str == '*')
-		{
-		//	write(1, "|wide change|", 13);
-			WIDE = va_arg(*ap, int);
-		}
+			get_param_uts(va_arg(*ap, int), args);
 		if (**str == '.' || ft_isalnum(**str))
-			get_param_utils(str, ap, args);
+			get_param_ut(str, ap, args);
 		(*str)++;
 	}
 	ARG_TYPE = **str;

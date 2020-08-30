@@ -27,9 +27,9 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 		*res += print_x((unsigned int)va_arg(*ap, unsigned int), args);
 	if (ARG_TYPE == 'n')
 		*((int *)va_arg(*ap, int*)) = *res;
-/*	if (ARG_TYPE == 'f')
-
-	if (ARG_TYPE == 'g')
+	if (ARG_TYPE == 'f')
+		*res += print_f((float)va_arg(*ap, double), args);
+/*	if (ARG_TYPE == 'g')
 
 	if (ARG_TYPE == 'e')
 	*/	
@@ -52,12 +52,13 @@ int		ft_printf(const char *format, ...)
 			ft_putchar_fd(*format, 1);
 			res++;
 		}
-		format++;
+		if (*format != 0)
+			format++;
 	}
 	va_end(ap);
 	return (res);
 }
-
+//
 //int main()
 //{
 //	 ------------CHAR AND STRING TESTS----------------
@@ -114,7 +115,7 @@ int		ft_printf(const char *format, ...)
     ft_printf("\ni = |%015.13i|", -2147483648);
     ft_printf("\ni = |%0*.9i|\n", 15, -2147483648);*/
 
-//		------------ INT TESTS----------------
+//		------------ UNSIGNED INT TESTS----------------
     /*ft_printf("\nu = |%015u|",  4294967295);
     ft_printf("\nu = |%0-12u|", 4294967295);
     ft_printf("\nu = |%0-15.13u|", 4294967295);
@@ -135,5 +136,16 @@ int		ft_printf(const char *format, ...)
     ft_printf("\nx = |%.5x|\n", (unsigned int)21);
 
 */
+//		------------ FLOAT TESTS----------------
+/*	ft_printf("\nf = |%f|", __FLT_MIN__);
+    ft_printf("\nf = |%0 15f|", __FLT_MIN__);
+	ft_printf("\nf = |% -12f|", __FLT_MIN__);
+    ft_printf("\nf = |% -15.13f|", __FLT_MIN__);
+    ft_printf("\nf = |% 15.13f|", __FLT_MIN__);
+    ft_printf("\nf = |%015.13f|", __FLT_MIN__);
+    ft_printf("\nf = |%0*.9f|\n", 15, __FLT_MIN__);*/
+
+//	printf("%3.7i", -2375);
+
 //	return 0;
 //}

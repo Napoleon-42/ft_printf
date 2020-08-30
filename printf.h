@@ -33,8 +33,9 @@ typedef struct	s_print
 }				t_print;
 
 
+int		ft_printf(const char *format, ...);
+
 void	init_print(t_print *args);
-void	get_param_utils(const char **str, va_list *ap, t_print *args);
 void	get_param(const char **str, va_list *ap, t_print *args);
 
 int		print_c(char c, t_print *args);
@@ -43,5 +44,6 @@ int		print_p(__uintmax_t nbr, t_print *args);
 int		print_i_d(int nbr, t_print *args);
 int		print_u(unsigned int nbr, t_print *args);
 int		print_x(unsigned int nbr, t_print *args);
+int		print_f(float nbr, t_print *args);
 
 #endif
