@@ -45,7 +45,7 @@ void		print_i_d_norme(int nbr, t_print *args)
 static int	null_precision_nbr(int with)
 {
 	ft_putnchar_fd(' ', with, 1);
-	return 0;
+	return (with == -1 ? 0 : with);
 }
 
 int		print_i_d(int nbr, t_print *args)

@@ -34,7 +34,7 @@ void		print_x_norme(unsigned int nbr, t_print *args)
 static int	null_precision_nbr(int with)
 {
 	ft_putnchar_fd(' ', with, 1);
-	return 0;
+	return (with < 0 ? 0 : with);
 }
 
 int			print_x(unsigned int nbr, t_print *args)

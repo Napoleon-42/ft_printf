@@ -47,7 +47,7 @@ static int				mx_i = 42;
 	   printf("\nf = |%015.13f|", __FLT_MIN__);
 	   printf("\nf = |%0*.9f|\n", 15, __FLT_MIN__);
 */
-	printf("%05");
+	printf("%2.9p", 1234);
 
 //	ft_printf("%03.3u", 6983);
 //	printf("\ntrue one- (%x    %c    %X    %s    %u    %p ",

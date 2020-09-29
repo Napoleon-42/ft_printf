@@ -17,7 +17,7 @@ int		print_c(char c, t_print *args)
 	}
 	else 
 		ft_putchar_fd(c, 1);
-	return ((WIDE) ? WIDE : 1);
+	return ( WIDE > 1 ? WIDE : 1);
 }
 
 int		print_s_null(t_print *args)
