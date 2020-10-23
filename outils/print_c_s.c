@@ -39,7 +39,7 @@ int		print_s(char *str, t_print *args)
 
 	if (str == NULL)
 		return (print_s_null(args));
-	lenght = (PRECIS >= 0 ? PRECIS : ft_strlen(str));
+	lenght = ((PRECIS >= 0 && PRECIS <= ft_strlen(str)) ? PRECIS : ft_strlen(str));
 	if (WIDE > (PRECIS > ft_strlen(str) ? ft_strlen(str) : lenght))
 	{
 		if (MIN_KEY != 1)
@@ -55,9 +55,7 @@ int		print_s(char *str, t_print *args)
 	}
 	else
 		ft_putnstr_fd(str, PRECIS, 1);
-//	ft_printf("return results = %d", (WIDE > lenght ? WIDE : (PRECIS > ft_strlen(str) ? ft_strlen(str) : lenght))); 
 	if (str != NULL && *str == 0)
 		return (WIDE != -1 ? WIDE : 0);
-	return (WIDE >= lenght ? WIDE : 
-(PRECIS > ft_strlen(str) ? ft_strlen(str) : lenght));
+	return (WIDE >= lenght ? WIDE : (PRECIS > ft_strlen(str) ? ft_strlen(str) : lenght));
 }

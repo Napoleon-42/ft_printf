@@ -22,17 +22,26 @@ void	put_uint_base(__uintmax_t nbr, char *str)
 	ft_putchar_fd(str[nbr % 16], 1);
 }
 
-int		print_p_zero()
+int		print_p_zero(t_print *args)
 {
-	write(1, "(nil)", 5);
-	return (5);
+	if (MIN_KEY == 1)
+	{
+		write(1, "(nil)", 5);
+		ft_putnchar_fd(' ', WIDE - 5, 1);
+	}
+	else
+	{
+		ft_putnchar_fd(' ', WIDE - 5, 1);
+		write(1, "(nil)", 5);
+	}
+	return (5 < WIDE ? WIDE : 5);
 }
 
 int		print_p(__uintmax_t nbr, t_print *args)
 {
 	if (nbr == 0)
-		return (print_p_zero());
-	SIZE = ui_len(nbr) + 2;
+		return (print_p_zero(args));
+	SIZE = (ui_len(nbr) < PRECIS ? PRECIS : ui_len(nbr)) + 2;
 	if (MIN_KEY == 1)
 	{
 		write(1, "0x", 2);
@@ -51,6 +60,8 @@ int		print_p(__uintmax_t nbr, t_print *args)
 			ft_putnchar_fd(' ', WIDE - SIZE, 1);
 		if (ZERO_KEY != 1)
 			write(1, "0x", 2);
+		if (PRECIS > ui_len(nbr))
+			ft_putnchar_fd('0', PRECIS - ui_len(nbr), 1);
 		put_uint_base(nbr, "0123456789abcdef");
 	}
 	return ((WIDE > SIZE) ? WIDE : SIZE);
