@@ -1,4 +1,16 @@
-#include "../../ft_printf/printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_f.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 13:35:46 by lnelson           #+#    #+#             */
+/*   Updated: 2021/01/14 14:17:38 by lnelson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../printf.h"
 
 void	pf_float(float f, t_print *args)
 {
@@ -15,7 +27,7 @@ void	pf_float(float f, t_print *args)
 	while (second != 0 && i < (PRECIS == -1 ? 6 : PRECIS))
 	{
 		second *= 10;
-		temp = (int) second;
+		temp = (int)second;
 		ft_putchar_fd(temp * (f < 0 ? -1 : 1) + 48, 1);
 		second -= temp;
 	}
@@ -42,7 +54,7 @@ int		float_len(float f, t_print *args)
 	return (res);
 }
 
-void		print_f_norme(int nbr, t_print *args)
+void	print_f_norme(int nbr, t_print *args)
 {
 	ft_putnchar_fd(' ', WIDE - SIZE, 1);
 	if (PLUS == 1 || SPACE == 1 || nbr < 0)
@@ -61,7 +73,7 @@ int		print_f(float nbr, t_print *args)
 		pf_float(nbr, args);
 		ft_putnchar_fd(' ', WIDE - SIZE, 1);
 	}
-	else 
+	else
 	{
 		if (ZERO_KEY == 1)
 		{

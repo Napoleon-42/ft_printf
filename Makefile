@@ -25,7 +25,7 @@ SRCS	= ${LIBFT_PATH}/ft_putchar_fd.c ${LIBFT_PATH}/ft_putstr_fd.c ${LIBFT_PATH}/
 		\
 		${LIBFT_PATH}/ft_atoi.c ${LIBFT_PATH}/ft_itoa.c\
 		\
-		${OUTILS_PATH}/print_i_d.c ${OUTILS_PATH}/print_x_X.c ${OUTILS_PATH}/print_p.c ${OUTILS_PATH}/print_c_s.c\
+		${OUTILS_PATH}/print_i_d.c ${OUTILS_PATH}/print_hexa.c ${OUTILS_PATH}/print_p.c ${OUTILS_PATH}/print_c_s.c\
 		${OUTILS_PATH}/ft_printf_outils.c ${OUTILS_PATH}/print_u.c ${OUTILS_PATH}/print_f.c\
 		\
 		./ft_printf.c

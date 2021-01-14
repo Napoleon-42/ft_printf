@@ -1,16 +1,21 @@
-#include "printf.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 13:34:25 by lnelson           #+#    #+#             */
+/*   Updated: 2021/01/14 13:34:33 by lnelson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	test_print_arg(t_print *args)
-{
-	printf("\n Arg is: \n PRECIS = %d\t WIDE = %d\n ZERO_KEY = %d\t MIN_KEY = %d \n ARG_TYPE = %c\n", PRECIS, WIDE, (int)ZERO_KEY, (int)MIN_KEY, ARG_TYPE);
-}
+#include "printf.h"
 
 void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 {
 	init_print(args);
 	get_param(str, ap, args);
-	//test_print_arg(args);
 	if (ARG_TYPE == 'c')
 		*res += print_c((char)(va_arg(*ap, int)), args);
 	if (ARG_TYPE == 's')
@@ -29,10 +34,6 @@ void	printf_param(const char **str, va_list *ap, int *res, t_print *args)
 		*((int *)va_arg(*ap, int*)) = *res;
 	if (ARG_TYPE == 'f')
 		*res += print_f((float)va_arg(*ap, double), args);
-/*	if (ARG_TYPE == 'g')
-
-	if (ARG_TYPE == 'e')
-	*/	
 }
 
 int		ft_printf(const char *format, ...)
@@ -58,94 +59,92 @@ int		ft_printf(const char *format, ...)
 	va_end(ap);
 	return (res);
 }
-//
-//int main()
-//{
-//	 ------------CHAR AND STRING TESTS----------------
-  //  ft_printf("\nc = |%1c%2c%3c|", '"', '!', '"');
-    //ft_printf("\nc = |%3c|", 'A');
-    //ft_printf("\nc = |%-3c|", 'A');
-    //ft_printf("\nc = |%-*c|", 3,'A');
 
-
-//	ft_printf("\ns = |%.7s|", "hello");
-//	ft_printf("\ns = |%.2s%.7s|", "hello", "world");
-//	ft_printf("\ns = |%.7s%.2s|", "hello", "world");
-//	ft_printf("\ns = |%.5s%7s|", "yo", "boi");
-
-
-	//printf("\n\nTrue printf:\ns = |%.7s|", "hello");
-	//printf("\ns = |%.2s%.7s|", "hello", "world");
-	//printf("\ns = |%.7s%.2s|", "hello", "world");
-	//printf("\ns = |%.5s%7s|", "yo", "boi");
-
-	/* ------------POINTER TESTS----------------
-	int a;
-
-	printf("\n\n p = -|%p|\n", &a);
-	ft_printf("\n p = +|%p|", &a);
-
-    printf("\n\n p = -|%20p|\n", &a);
-    ft_printf(" p = +|%20p|", &a);
-
-    printf("\n\n p = -|%20p|\n", &a);
-    ft_printf(" p = +|%020p|", &a);
-
-    printf("\n\n p = +|%-20p|\n", &a);
-    ft_printf(" p = -|%-20p|", &a); */
-
-	/* ------------ % TEST ----------------
-	ft_printf("%% = |% 0-33.*%|", 34);*/
-
-	/* ------------ N TEST----------------
-	int b;
-
-	b = -35;
-	printf("before = %i\n", b);
-	ft_printf("0123456789%n\n", &b);
-	printf(" after = %i", b);*/
-
-//		------------ INT TESTS----------------
-	/*ft_printf("\ni = |%i|", -2147483648);
-    ft_printf("\ni = |%0 15i|",  -2147483648);
-    ft_printf("\ni = |%0 -12i|", -2147483648);
-    ft_printf("\ni = |%0 -15.13i|", -2147483648);
-    ft_printf("\ni = |% -15.13i|", -2147483648);
-    ft_printf("\ni = |% 15.13i|", -2147483648);
-    ft_printf("\ni = |%015.13i|", -2147483648);
-    ft_printf("\ni = |%0*.9i|\n", 15, -2147483648);*/
-
-//		------------ UNSIGNED INT TESTS----------------
-    /*ft_printf("\nu = |%015u|",  4294967295);
-    ft_printf("\nu = |%0-12u|", 4294967295);
-    ft_printf("\nu = |%0-15.13u|", 4294967295);
-    ft_printf("\nu = |%-15.13u|", 4294967295);
-    ft_printf("\nu = |%15.13u|", 4294967295);
-    ft_printf("\nu = |%015.13u|", 4294967295);
-    ft_printf("\nu = |%0 *.9u|\n", 15, 4294967295);*/
-
-
-//		------------ XEXA TESTS----------------
-/*	ft_printf("\nx = |%x|", (unsigned int)17);
-    ft_printf("\nx = |%x|", (unsigned int)4294967295);
-    ft_printf("\nx = |%7x|", (unsigned int)33);
-    ft_printf("\nx = |%5x|", (unsigned int)52625);
-    ft_printf("\nx = |%2x|", (unsigned int)94827);
-    ft_printf("\nx = |%-7x|", (unsigned int)33);
-    ft_printf("\nx = |%-5x|", (unsigned int)52625);
-    ft_printf("\nx = |%.5x|\n", (unsigned int)21);
-
+/*
+**int main()
+**{
+**	 ------------CHAR AND STRING TESTS----------------
+**  ft_printf("\nc = |%1c%2c%3c|", '"', '!', '"');
+**	ft_printf("\nc = |%3c|", 'A');
+**    ft_printf("\nc = |%-3c|", 'A');
+**    ft_printf("\nc = |%-*c|", 3,'A');
+**
+**	ft_printf("\ns = |%.7s|", "hello");
+**	ft_printf("\ns = |%.2s%.7s|", "hello", "world");
+**	ft_printf("\ns = |%.7s%.2s|", "hello", "world");
+**	ft_printf("\ns = |%.5s%7s|", "yo", "boi");
+**
+**	printf("\n\nTrue printf:\ns = |%.7s|", "hello");
+**	printf("\ns = |%.2s%.7s|", "hello", "world");
+**	printf("\ns = |%.7s%.2s|", "hello", "world");
+**	printf("\ns = |%.5s%7s|", "yo", "boi");
+**
+**	 ------------POINTER TESTS----------------
+**	int a;
+**
+**	printf("\n\n p = -|%p|\n", &a);
+**	ft_printf("\n p = +|%p|", &a);
+**
+**    printf("\n\n p = -|%20p|\n", &a);
+**    ft_printf(" p = +|%20p|", &a);
+**
+**    printf("\n\n p = -|%20p|\n", &a);
+**    ft_printf(" p = +|%020p|", &a);
+**
+**    printf("\n\n p = +|%-20p|\n", &a);
+**    ft_printf(" p = -|%-20p|", &a);
+**
+**	------------ % TEST ----------------
+**	ft_printf("%% = |% 0-33.*%|", 34);
+**
+**	 ------------ N TEST----------------
+**	int b;
+**
+**	b = -35;
+**	printf("before = %i\n", b);
+**	ft_printf("0123456789%n\n", &b);
+**	printf(" after = %i", b);
+**
+**	------------ INT TESTS----------------
+**
+**	ft_printf("\ni = |%i|", -2147483648);
+**    ft_printf("\ni = |%0 15i|",  -2147483648);
+**    ft_printf("\ni = |%0 -12i|", -2147483648);
+**    ft_printf("\ni = |%0 -15.13i|", -2147483648);
+**    ft_printf("\ni = |% -15.13i|", -2147483648);
+**    ft_printf("\ni = |% 15.13i|", -2147483648);
+**    ft_printf("\ni = |%015.13i|", -2147483648);
+**    ft_printf("\ni = |%0*.9i|\n", 15, -2147483648);
+**
+**	------------ UNSIGNED INT TESTS----------------
+**
+**    ft_printf("\nu = |%015u|",  4294967295);
+**    ft_printf("\nu = |%0-12u|", 4294967295);
+**    ft_printf("\nu = |%0-15.13u|", 4294967295);
+**    ft_printf("\nu = |%-15.13u|", 4294967295);
+**    ft_printf("\nu = |%15.13u|", 4294967295);
+**   ft_printf("\nu = |%015.13u|", 4294967295);
+**    ft_printf("\nu = |%0 *.9u|\n", 15, 4294967295);
+**
+**	------------ XEXA TESTS----------------
+**
+**    ft_printf("\nx = |%7x|", (unsigned int)33);
+**    ft_printf("\nx = |%5x|", (unsigned int)52625);
+**    ft_printf("\nx = |%2x|", (unsigned int)94827);
+**    ft_printf("\nx = |%-7x|", (unsigned int)33);
+**    ft_printf("\nx = |%-5x|", (unsigned int)52625);
+**    ft_printf("\nx = |%.5x|\n", (unsigned int)21);
+**
+**	----------- FLOAT TESTS----------------
+**
+**	ft_printf("\nf = |%f|", __FLT_MIN__);
+**    ft_printf("\nf = |%0 15f|", __FLT_MIN__);
+**	ft_printf("\nf = |% -12f|", __FLT_MIN__);
+**    ft_printf("\nf = |% -15.13f|", __FLT_MIN__);
+**    ft_printf("\nf = |% 15.13f|", __FLT_MIN__);
+**    ft_printf("\nf = |%015.13f|", __FLT_MIN__);
+**    ft_printf("\nf = |%0*.9f|\n", 15, __FLT_MIN__);
+**	printf("%3.7i", -2375);
+**	return 0;
+**}
 */
-//		------------ FLOAT TESTS----------------
-/*	ft_printf("\nf = |%f|", __FLT_MIN__);
-    ft_printf("\nf = |%0 15f|", __FLT_MIN__);
-	ft_printf("\nf = |% -12f|", __FLT_MIN__);
-    ft_printf("\nf = |% -15.13f|", __FLT_MIN__);
-    ft_printf("\nf = |% 15.13f|", __FLT_MIN__);
-    ft_printf("\nf = |%015.13f|", __FLT_MIN__);
-    ft_printf("\nf = |%0*.9f|\n", 15, __FLT_MIN__);*/
-
-//	printf("%3.7i", -2375);
-
-//	return 0;
-//}

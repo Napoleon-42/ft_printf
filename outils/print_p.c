@@ -1,4 +1,16 @@
-#include "../../ft_printf/printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_p.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 13:36:01 by lnelson           #+#    #+#             */
+/*   Updated: 2021/01/14 13:48:31 by lnelson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../printf.h"
 
 int		ui_len(__uintmax_t nbr)
 {
@@ -37,6 +49,12 @@ int		print_p_zero(t_print *args)
 	return (5 < WIDE ? WIDE : 5);
 }
 
+void	utils(t_print *args)
+{
+	write(1, "0x", 2);
+	ft_putnchar_fd('0', WIDE - SIZE, 1);
+}
+
 int		print_p(__uintmax_t nbr, t_print *args)
 {
 	if (nbr == 0)
@@ -52,10 +70,7 @@ int		print_p(__uintmax_t nbr, t_print *args)
 	else
 	{
 		if (ZERO_KEY == 1 && WIDE > SIZE)
-		{
-			write(1, "0x", 2);
-			ft_putnchar_fd('0', WIDE - SIZE, 1);
-		}
+			utils(args);
 		else if (WIDE > SIZE)
 			ft_putnchar_fd(' ', WIDE - SIZE, 1);
 		if (ZERO_KEY != 1)

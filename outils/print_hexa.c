@@ -1,55 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_i_d.c                                        :+:      :+:    :+:   */
+/*   print_x_X.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnelson <lnelson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 13:35:54 by lnelson           #+#    #+#             */
-/*   Updated: 2021/01/14 13:56:22 by lnelson          ###   ########.fr       */
+/*   Created: 2021/01/14 13:36:10 by lnelson           #+#    #+#             */
+/*   Updated: 2021/01/14 13:40:59 by lnelson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../printf.h"
 
-static void		pf_putnbr(int nbr, t_print *args)
+static void		pf_putnbr(unsigned int nb, t_print *args)
 {
-	unsigned int	nb;
-
-	if (nbr < 0)
-		nb = -nbr;
-	else
-		nb = nbr;
-	if (nb / 10 > 0)
-		pf_putnbr(nb / 10, args);
-	ft_putchar_fd((nb % 10 + 48), 1);
+	if (nb / 16 > 0)
+		pf_putnbr(nb / 16, args);
+	ft_putchar_fd((ARG_TYPE == 'X' ? UPP_HEXA : LOW_HEXA)[nb % 16], 1);
 }
 
-static int		nbrlen(int nbr)
+static int		nbrlen(unsigned int nb)
 {
 	int				i;
-	unsigned int	nb;
 
 	i = 0;
-	if (nbr == 0)
+	if (nb == 0)
 		return (1);
-	if (nbr < 0)
-		nb = -nbr;
-	else
-		nb = nbr;
 	while (nb > 0)
 	{
 		i++;
-		nb = nb / 10;
+		nb = nb / 16;
 	}
 	return (i);
 }
 
-void			print_i_d_norme(int nbr, t_print *args)
+void			print_x_norme(unsigned int nbr, t_print *args)
 {
 	ft_putnchar_fd(' ', WIDE - SIZE, 1);
-	if (PLUS == 1 || SPACE == 1 || nbr < 0)
-		write(1, (nbr < 0 ? "-" : (PLUS == 1 ? "+" : " ")), 1);
+	if (HASH == 1)
+		write(1, (ARG_TYPE == 'X' ? "0X" : "0x"), 2);
 	ft_putnchar_fd('0', PRECIS - nbrlen(nbr), 1);
 	pf_putnbr(nbr, args);
 }
@@ -57,19 +46,19 @@ void			print_i_d_norme(int nbr, t_print *args)
 static int		null_precision_nbr(int with)
 {
 	ft_putnchar_fd(' ', with, 1);
-	return (with == -1 ? 0 : with);
+	return (with < 0 ? 0 : with);
 }
 
-int				print_i_d(int nbr, t_print *args)
+int				print_x(unsigned int nbr, t_print *args)
 {
 	if (PRECIS == 0 && nbr == 0)
 		return (null_precision_nbr(WIDE));
 	SIZE = nbrlen(nbr) < PRECIS ? PRECIS : nbrlen(nbr);
-	SIZE += (PLUS == 1 || SPACE == 1 || nbr < 0) ? 1 : 0;
+	SIZE += (HASH == 1) ? 2 : 0;
 	if (MIN_KEY == 1)
 	{
-		if (PLUS == 1 || SPACE == 1 || nbr < 0)
-			write(1, (nbr < 0 ? "-" : (PLUS == 1 ? "+" : " ")), 1);
+		if (HASH == 1)
+			write(1, (ARG_TYPE == 'X' ? "0X" : "0x"), 2);
 		ft_putnchar_fd('0', PRECIS - nbrlen(nbr), 1);
 		pf_putnbr(nbr, args);
 		ft_putnchar_fd(' ', WIDE - SIZE, 1);
@@ -78,13 +67,13 @@ int				print_i_d(int nbr, t_print *args)
 	{
 		if (ZERO_KEY == 1 && PRECIS < 0)
 		{
-			if (PLUS == 1 || SPACE == 1 || nbr < 0)
-				write(1, (nbr < 0 ? "-" : (PLUS == 1 ? "+" : " ")), 1);
+			if (HASH == 1)
+				write(1, (ARG_TYPE == 'X' ? "0X" : "0x"), 2);
 			ft_putnchar_fd('0', WIDE - SIZE, 1);
 			pf_putnbr(nbr, args);
 			return (WIDE > SIZE ? WIDE : SIZE);
 		}
-		print_i_d_norme(nbr, args);
+		print_x_norme(nbr, args);
 	}
 	return (WIDE > SIZE ? WIDE : SIZE);
 }
